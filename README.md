@@ -1,6 +1,6 @@
 # wireguard-openvpn
 
-The script performs the following:
+**The script performs the following:**
 
 * System Updates: Updates package lists and upgrades existing packages
 
@@ -18,13 +18,13 @@ The script performs the following:
 
 * Verification: Checks if services are running properly
 
-After installation, you'll need to:
+**After installation, you'll need to:**
 
-** Create client certificates for OpenVPN users
+* Create client certificates for OpenVPN users
 
-** Test both VPN connections
+* Test both VPN connections
 
-** Monitor logs for any issues
+* Monitor logs for any issues
 
 
 ```
