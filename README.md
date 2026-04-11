@@ -27,3 +27,10 @@ Test both VPN connections
 Monitor logs for any issues
 
 
+```
+chmod +x install-vpn-dual.sh
+sudo ./install-vpn-dual.sh
+
+```
+
+
