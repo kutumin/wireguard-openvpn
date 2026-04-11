@@ -26,11 +26,18 @@
 
 * Monitor logs for any issues
 
+## Install OpenVPN Server && WireGuard
 
 ```
 chmod +x install-vpn-dual.sh
 sudo ./install-vpn-dual.sh
 
+```
+## Install WireGuard Client
+
+```
+chmod +x install-vpn-client.sh
+sudo ./install-vpn-client.sh
 ```
 
 
