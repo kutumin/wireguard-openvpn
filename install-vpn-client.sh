@@ -39,7 +39,7 @@ fi
 # Configuration variables
 WG_INTERFACE="wg0"
 WG_CONFIG="/etc/wireguard/wg0.conf"
-SERVER_ENDPOINT="194.87.103.131:44450"
+SERVER_ENDPOINT="x.x.x.x:44450"
 CLIENT_ADDRESS="10.10.10.3/24"
 
 # Detect network interface
@@ -122,7 +122,7 @@ echo "  $PUBLIC_KEY"
 print_status "Creating WireGuard client configuration..."
 cat > $WG_CONFIG << EOF
 [Interface]
-PrivateKey = qG79dWhaN6LstkJqn5Bzy0u9TziC8frRs3d2MnPoY0g=
+PrivateKey = $PRIVATE_KEY
 Address = $CLIENT_ADDRESS
 ListenPort = 44451
 
@@ -131,7 +131,7 @@ PostUp = nping --udp --dest-port 44450 --rate 5 -c 25 --data-length 4 $SERVER_EN
 PostDown = iptables -t nat -D POSTROUTING -o $DEFAULT_INTERFACE -j MASQUERADE 2>/dev/null || true
 
 [Peer]
-PublicKey = HKe7xu4TDTHJiQV15SoEtnGMNhidczPQP5XPgtMedyA=
+PublicKey = $PublicKey_server
 Endpoint = $SERVER_ENDPOINT
 AllowedIPs = 10.10.10.2/32, 10.8.0.0/24
 PersistentKeepalive = 25
