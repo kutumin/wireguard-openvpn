@@ -94,7 +94,7 @@ chmod 700 /etc/wireguard
 print_status "Creating WireGuard configuration..."
 cat > $WG_CONFIG << 'EOF'
 [Interface]
-PrivateKey = sBk4yUN4/YEVRQwcn4mMgtzK4X2fPtyv6HGK423pB14=
+PrivateKey = $PRIVATE_KEY
 Address = 10.10.10.2/24
 ListenPort = 44450
 Table = off
@@ -103,8 +103,8 @@ PostUp = ip route add default via 10.10.10.3 dev wg0 table wgforward
 PostDown = iptables -D FORWARD -i tun0 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -o tun0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; ip rule del fwmark 100 lookup wgforward; iptables -t mangle -D PREROUTING -i tun0 -j MARK --set-mark 100; ip route del default via 10.10.10.3 dev wg0 table wgforward; ip route del 10.10.10.0/24 dev wg0 scope link table wgforward
 
 [Peer]
-PublicKey = j9I4oPgfgFxZuohCMIHxTgF7AjQVwCw4a/QpCwZnJhM=
-Endpoint = 185.250.151.170:44450
+PublicKey = $PUBLICK_KEY_CLIENT
+Endpoint = X.X.X.X:44450
 AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
