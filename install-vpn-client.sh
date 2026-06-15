@@ -39,7 +39,8 @@ fi
 # Configuration variables
 WG_INTERFACE="wg0"
 WG_CONFIG="/etc/wireguard/wg0.conf"
-SERVER_ENDPOINT="x.x.x.x:44450"
+SERVER_ENDPOINT="194.87.103.131:44450"
+SERVER="194.87.103.131"
 CLIENT_ADDRESS="10.10.10.3/24"
 
 # Detect network interface
@@ -124,10 +125,10 @@ cat > $WG_CONFIG << EOF
 [Interface]
 PrivateKey = $PRIVATE_KEY
 Address = $CLIENT_ADDRESS
-ListenPort = 44451
+ListenPort = 44450
 
 # Keep connection alive and set up NAT masquerading
-PostUp = nping --udp --dest-port 44450 --rate 5 -c 25 --data-length 4 $SERVER_ENDPOINT; iptables -t nat -A POSTROUTING -o $DEFAULT_INTERFACE -j MASQUERADE
+PostUp = nping --udp --source-port 44450 --dest-port 44450 --rate 5 -c 25 --data-length 4 $SERVER; iptables -t nat -A POSTROUTING -o $DEFAULT_INTERFACE -j MASQUERADE
 PostDown = iptables -t nat -D POSTROUTING -o $DEFAULT_INTERFACE -j MASQUERADE 2>/dev/null || true
 
 [Peer]
